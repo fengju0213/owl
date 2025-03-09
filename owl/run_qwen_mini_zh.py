@@ -3,7 +3,7 @@ load_dotenv()
 
 from camel.models import ModelFactory
 from camel.toolkits import WebToolkit,SearchToolkit,FunctionTool
-from camel.types import ModelPlatformType,ModelType
+from camel.types import ModelPlatformType
 
 from loguru import logger
 
@@ -21,31 +21,31 @@ def construct_society(question: str) -> OwlRolePlaying:
     
     user_model = ModelFactory.create(
              model_platform=ModelPlatformType.QWEN,
-             model_type=ModelType.QWEN_MAX,
+             model_type="qwen-max",
              model_config_dict={"temperature": 0},
          )
 
     assistant_model = ModelFactory.create(
              model_platform=ModelPlatformType.QWEN,
-             model_type=ModelType.QWEN_MAX,
+             model_type="qwen-max",
              model_config_dict={"temperature": 0},
          )
 
     search_model = ModelFactory.create(
              model_platform=ModelPlatformType.QWEN,
-             model_type=ModelType.QWEN_MAX,
+             model_type="qwen-max",
              model_config_dict={"temperature": 0},
          )
 
     planning_model = ModelFactory.create(
              model_platform=ModelPlatformType.QWEN,
-             model_type=ModelType.QWEN_MAX,
+             model_type="qwen-max",
              model_config_dict={"temperature": 0},
          )
 
     web_model = ModelFactory.create(
              model_platform=ModelPlatformType.QWEN,
-             model_type=ModelType.QWEN_VL_MAX,
+             model_type="qwen-vl-plus-latest",
              model_config_dict={"temperature": 0},
          )
 
@@ -83,9 +83,14 @@ def construct_society(question: str) -> OwlRolePlaying:
 
 
 # Example case
-question = "打开小红书上浏览推荐栏目下的前三个笔记内容，之后给我一个总结报告"
+question = "打开小红书上浏览推荐栏目下的前三个笔记内容，不要登陆，之后给我一个总结报告"
 
 society = construct_society(question)
 answer, chat_history, token_count = run_society(society)
 
 logger.success(f"Answer: {answer}")
+
+
+
+
+
